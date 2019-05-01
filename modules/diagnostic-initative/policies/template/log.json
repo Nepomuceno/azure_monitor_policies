@@ -1,0 +1,8 @@
+{
+    "category": "$$CATEGORY$$",
+    "enabled": true,
+    "retentionPolicy": {
+        "days": "[parameters('retentionDays')]",
+        "enabled": true
+    }
+}
