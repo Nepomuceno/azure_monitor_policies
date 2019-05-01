@@ -1,0 +1,23 @@
+{
+    "name": {
+        "value": "sampleeh-tf-test"
+    },
+    "id": {
+        "value": "sampleeh-tf-test"
+    },
+    "eventHubName": {
+        "value": ""
+    },
+    "eventHubAuthorizationRuleId": {
+        "value": ""
+    },
+    "workspaceId": {
+        "value": ""
+    },
+    "storageAccountName": {
+        "value": "terraformtestlogs"
+    },
+    "retentionDays": {
+        "value": "365"
+    }
+}

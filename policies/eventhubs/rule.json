@@ -77,7 +77,7 @@
                         "resources": [
                             {
                                 "type": "providers/diagnosticSettings",
-                                "name": "[concat('Microsoft.Insights/', parameters('id'))]",
+                                "name": "[concat('Microsoft.Insights/provider/', parameters('name'))]",
                                 "dependsOn": [
                                     "[resourceId('Microsoft.EventHub/namespaces',parameters('name'))]"
                                 ],
