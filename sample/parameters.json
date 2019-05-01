@@ -1,9 +1,9 @@
 {
     "name": {
-        "value": "sampleeh-tf-test"
+        "value": "log-events-2"
     },
     "id": {
-        "value": "sampleeh-tf-test"
+        "value": "log-events-2"
     },
     "eventHubName": {
         "value": ""
@@ -15,7 +15,7 @@
         "value": ""
     },
     "storageAccountName": {
-        "value": "terraformtestlogs"
+        "value": "samplepolicy"
     },
     "retentionDays": {
         "value": "365"

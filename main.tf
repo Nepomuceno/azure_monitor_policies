@@ -10,7 +10,7 @@ data "azurerm_role_definition" "Contributor" {
   name = "Contributor"
 }
 
-resource "random_uuid" "provider" { }
+resource "random_uuid" "provider" {}
 
 resource "azurerm_resource_group" "sample" {
   name     = "${var.prefix}-policies"
