@@ -73,11 +73,5 @@ https://www.terraform.io/docs/providers/azurerm/r/management_lock.html
 Resources - 0.11 Configuration Language - Terraform by HashiCorp
 https://www.terraform.io/docs/configuration-0-11/resources.html
 
-Story: Writing Scripts with Go
-https://gist.github.com/posener/73ffd326d88483df6b1cb66e8ed1e0bd
-
-Go by Example: Range
-https://gobyexample.com/range
-
 Azure Diagnostic Logs supported services and schemas | Microsoft Docs
 https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-logs-schema

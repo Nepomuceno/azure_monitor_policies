@@ -1,6 +1,6 @@
 {
     "if": {
-        "equals": "Microsoft.EventHub/namespaces",
+        "equals": "Microsoft.RecoveryServices/Vaults",
         "field": "type"
     },
     "then": {
@@ -67,7 +67,7 @@
                                     "eventHubName": "[if(variables('ehEnabled'),parameters('eventHubName'),json('null'))]",
                                     "logs": [
                                         {
-                                            "category": "ArchiveLogs",
+                                            "category": "AzureBackupReport",
                                             "enabled": true,
                                             "retentionPolicy": {
                                                 "days": "[parameters('retentionDays')]",
@@ -75,7 +75,7 @@
                                             }
                                         },
                                         {
-                                            "category": "OperationalLogs",
+                                            "category": "AzureSiteRecoveryJobs",
                                             "enabled": true,
                                             "retentionPolicy": {
                                                 "days": "[parameters('retentionDays')]",
@@ -83,7 +83,47 @@
                                             }
                                         },
                                         {
-                                            "category": "AutoScaleLogs",
+                                            "category": "AzureSiteRecoveryEvents",
+                                            "enabled": true,
+                                            "retentionPolicy": {
+                                                "days": "[parameters('retentionDays')]",
+                                                "enabled": true
+                                            }
+                                        },
+                                        {
+                                            "category": "AzureSiteRecoveryReplicatedItems",
+                                            "enabled": true,
+                                            "retentionPolicy": {
+                                                "days": "[parameters('retentionDays')]",
+                                                "enabled": true
+                                            }
+                                        },
+                                        {
+                                            "category": "AzureSiteRecoveryReplicationStats",
+                                            "enabled": true,
+                                            "retentionPolicy": {
+                                                "days": "[parameters('retentionDays')]",
+                                                "enabled": true
+                                            }
+                                        },
+                                        {
+                                            "category": "AzureSiteRecoveryRecoveryPoints",
+                                            "enabled": true,
+                                            "retentionPolicy": {
+                                                "days": "[parameters('retentionDays')]",
+                                                "enabled": true
+                                            }
+                                        },
+                                        {
+                                            "category": "AzureSiteRecoveryReplicationDataUploadRate",
+                                            "enabled": true,
+                                            "retentionPolicy": {
+                                                "days": "[parameters('retentionDays')]",
+                                                "enabled": true
+                                            }
+                                        },
+                                        {
+                                            "category": "AzureSiteRecoveryProtectedDiskDataChurn",
                                             "enabled": true,
                                             "retentionPolicy": {
                                                 "days": "[parameters('retentionDays')]",
@@ -104,7 +144,7 @@
                                     "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
                                     "workspaceId": "[if(variables('laEnabled'),parameters('workspaceId'),json('null'))]"
                                 },
-                                "type": "Microsoft.EventHub/namespaces/providers/diagnosticSettings"
+                                "type": "Microsoft.RecoveryServices/Vaults/providers/diagnosticSettings"
                             }
                         ],
                         "variables": {
