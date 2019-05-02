@@ -38,31 +38,5 @@
             "description": ""
         },
         "defaultValue": ""
-    },
-    "logs": [
-        {
-            "category": "ApplicationGatewayAccessLog",
-            "enabled": true,
-            "retentionPolicy": {
-                "days": "0",
-                "enabled": true
-            }
-        },
-        {
-            "category": "ApplicationGatewayPerformanceLog",
-            "enabled": true,
-            "retentionPolicy": {
-                "days": "0",
-                "enabled": true
-            }
-        },
-        {
-            "category": "ApplicationGatewayFirewallLog",
-            "enabled": true,
-            "retentionPolicy": {
-                "days": "0",
-                "enabled": true
-            }
-        }
-    ]
+    }
   }

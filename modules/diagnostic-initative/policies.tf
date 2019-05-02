@@ -40,7 +40,21 @@ PARAMETERS
 }
 
 locals {
-  available = [
-    "eventhubs",
-  ]
+  available = ["eventhubs",
+"nsg",
+"loadbalancer",
+"publicip",
+"virtualnetwork",
+"applicationgateway",
+"applicationfirewall",
+"applicationfirewall",
+"gateway",
+"traficcmanager",
+"gateway",
+"expressroute",
+"frontdoor",
+"powerbi",
+"backupvault",
+"search",
+"servicebus",]
 }

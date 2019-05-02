@@ -79,7 +79,7 @@ func main() {
 			Enablemetrics: true,
 		},
 		Entity{
-			Name:          "traficcmanager",
+			Name:          "traficmanager",
 			ResourceType:  "Microsoft.Network/trafficManagerProfiles",
 			Logs:          []string{"ProbeHealthStatusEvents"},
 			Enablemetrics: true,
@@ -136,7 +136,10 @@ func main() {
 	dat, err = ioutil.ReadFile("./base-rule.json")
 	check(err)
 	ruleTemplate := string(dat)
-
+	dat, err = ioutil.ReadFile("./base-parameter.json")
+	check(err)
+	parameterTemplate := dat
+	available := []string{}
 	for _, entity := range content {
 		logs := []string{}
 		for _, logCategory := range entity.Logs {
@@ -152,15 +155,19 @@ func main() {
 		contentTemplate = strings.ReplaceAll(contentTemplate, "\"$$LOGS$$\"", strings.Join(logs, ",\n"))
 		
 		var v interface{}
+		available = append(available,fmt.Sprintf("\"%s\"",entity.Name))
 		json.Unmarshal([]byte(contentTemplate),&v)
 		jsonData, error := json.MarshalIndent(v, "", "    ")
 		check(error)
 		folderpath := fmt.Sprintf("../%s/",entity.Name)
 		os.MkdirAll(folderpath, os.ModePerm)
 		ruleFileName := fmt.Sprintf("../%s/rule.json",entity.Name)
+		parametersFileName := fmt.Sprintf("../%s/parameters.json",entity.Name)
 		fmt.Printf("Writing %s files\n",entity.Name)
-		ioutil.WriteFile(ruleFileName,jsonData,0644)
+		ioutil.WriteFile(ruleFileName,jsonData,os.ModePerm)
+		ioutil.WriteFile(parametersFileName,parameterTemplate,os.ModePerm)
 	}
+	fmt.Printf("[%s]",strings.Join(available,",\n"))
 
 	os.Exit(0)
 }
