@@ -10,17 +10,10 @@ variable "vmResourceId" {
 
 variable "workspaceKey" {
   description = "the key of the workspace you want to use"
-  default     = ""
 }
 
 variable "workspaceId" {
   description = "the GUID id of the worspace to push the telemetry to"
-  default     = ""
-}
-
-variable "workspaceName" {
-  description = "the name of the workspace you want to use"
-  default     = "test"
 }
 
 variable "prefix" {}

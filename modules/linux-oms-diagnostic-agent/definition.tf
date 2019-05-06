@@ -1,7 +1,7 @@
 data "azurerm_subscription" "current" {}
 
 resource "azurerm_policy_definition" "base" {
-  name         = "${var.prefix}-log-oms"
+  name         = "${var.prefix}-oms-log"
   policy_type  = "Custom"
   mode         = "All"
   display_name = "${var.prefix}-policy-oms"
@@ -10,7 +10,7 @@ resource "azurerm_policy_definition" "base" {
 }
 
 resource "azurerm_policy_assignment" "force_diagnostic" {
-  name                 = "${var.prefix}-force-logs"
+  name                 = "${var.prefix}-oms-logs"
   scope                = "${data.azurerm_subscription.current.id}"
   policy_definition_id = "${azurerm_policy_definition.base.id}"
   description          = "Enforce that Linux vms do have diagnostics enable"
@@ -33,19 +33,26 @@ resource "azurerm_policy_assignment" "force_diagnostic" {
 PARAMETERS
 }
 
+resource "azurerm_role_assignment" "assigment_rule_compatibility" {
+  scope                = "${data.azurerm_subscription.current.id}"
+  role_definition_name = "Contributor"
+  principal_id         = "${azurerm_policy_assignment.force_diagnostic.identity.0.principal_id}"
+}
+
+
 locals {
   parameters = <<POLICY_RULE_TEMPLATE
 {
       "workspaceId": {
         "type": "String",
         "metadata": {
-          "displayName": "Log Analytics workspace",
+          "displayName": "Log Analytics workspace"
         }
       },
       "workspaceKey": {
         "type": "String",
         "metadata": {
-          "displayName": "Log Analytics workspace",
+          "displayName": "Log Analytics workspace"
         }
       },
       "listOfImageIdToInclude": {
