@@ -61,7 +61,7 @@ func main() {
 			Enablemetrics: true,
 		},
 		Entity{
-			Name:          "applicationfirewall",
+			Name:          "securegateways",
 			ResourceType:  "Microsoft.Network/securegateways",
 			Logs:          []string{"AzureFirewallApplicationRule", "AzureFirewallNetworkRule"},
 			Enablemetrics: true,
@@ -112,7 +112,7 @@ func main() {
 			Name:          "backupvault",
 			ResourceType:  "Microsoft.RecoveryServices/Vaults",
 			Logs:          []string{"AzureBackupReport", "AzureSiteRecoveryJobs", "AzureSiteRecoveryEvents", "AzureSiteRecoveryReplicatedItems", "AzureSiteRecoveryReplicationStats", "AzureSiteRecoveryRecoveryPoints", "AzureSiteRecoveryReplicationDataUploadRate", "AzureSiteRecoveryProtectedDiskDataChurn"},
-			Enablemetrics: true,
+			Enablemetrics: false,
 		},
 		Entity{
 			Name:          "search",

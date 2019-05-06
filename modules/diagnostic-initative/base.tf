@@ -1,4 +1,5 @@
 resource "azurerm_resource_group" "base" {
-  name     = "${var.rg_name}"
-  location = "${var.location}"
+  count    = "${length(var.locations)}"
+  name     = "${var.rg_name}-${element(var.locations,count.index)}"
+  location = "${element(var.locations,count.index)}"
 }

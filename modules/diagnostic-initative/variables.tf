@@ -18,7 +18,13 @@ variable "eh_role_id" {
   default     = ""
 }
 
-variable "location" {
+variable "storage_id" {
+  description = "Pre generated event hubs role id to be used"
+  default     = ""
+}
+
+variable "locations" {
+  type        = "list"
   description = "Location where the results should be put"
 }
 

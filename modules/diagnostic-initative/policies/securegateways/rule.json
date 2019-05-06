@@ -6,7 +6,7 @@
                 "field": "location"
             },
             {
-                "equals": "Microsoft.Network/applicationGateways",
+                "equals": "Microsoft.Network/securegateways",
                 "field": "type"
             }
         ]
@@ -75,7 +75,7 @@
                                     "eventHubName": "[if(variables('ehEnabled'),parameters('eventHubName'),json('null'))]",
                                     "logs": [
                                         {
-                                            "category": "ApplicationGatewayAccessLog",
+                                            "category": "AzureFirewallApplicationRule",
                                             "enabled": true,
                                             "retentionPolicy": {
                                                 "days": "[parameters('retentionDays')]",
@@ -83,15 +83,7 @@
                                             }
                                         },
                                         {
-                                            "category": "ApplicationGatewayPerformanceLog",
-                                            "enabled": true,
-                                            "retentionPolicy": {
-                                                "days": "[parameters('retentionDays')]",
-                                                "enabled": true
-                                            }
-                                        },
-                                        {
-                                            "category": "ApplicationGatewayFirewallLog",
+                                            "category": "AzureFirewallNetworkRule",
                                             "enabled": true,
                                             "retentionPolicy": {
                                                 "days": "[parameters('retentionDays')]",
@@ -112,7 +104,7 @@
                                     "storageAccountId": "[if(variables('saEnabled'),resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')),json('null'))]",
                                     "workspaceId": "[if(variables('laEnabled'),parameters('workspaceId'),json('null'))]"
                                 },
-                                "type": "Microsoft.Network/applicationGateways/providers/diagnosticSettings"
+                                "type": "Microsoft.Network/securegateways/providers/diagnosticSettings"
                             }
                         ],
                         "variables": {

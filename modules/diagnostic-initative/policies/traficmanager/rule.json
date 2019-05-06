@@ -6,7 +6,7 @@
                 "field": "location"
             },
             {
-                "equals": "Microsoft.Network/applicationGateways",
+                "equals": "Microsoft.Network/trafficManagerProfiles",
                 "field": "type"
             }
         ]
@@ -75,23 +75,7 @@
                                     "eventHubName": "[if(variables('ehEnabled'),parameters('eventHubName'),json('null'))]",
                                     "logs": [
                                         {
-                                            "category": "ApplicationGatewayAccessLog",
-                                            "enabled": true,
-                                            "retentionPolicy": {
-                                                "days": "[parameters('retentionDays')]",
-                                                "enabled": true
-                                            }
-                                        },
-                                        {
-                                            "category": "ApplicationGatewayPerformanceLog",
-                                            "enabled": true,
-                                            "retentionPolicy": {
-                                                "days": "[parameters('retentionDays')]",
-                                                "enabled": true
-                                            }
-                                        },
-                                        {
-                                            "category": "ApplicationGatewayFirewallLog",
+                                            "category": "ProbeHealthStatusEvents",
                                             "enabled": true,
                                             "retentionPolicy": {
                                                 "days": "[parameters('retentionDays')]",
@@ -112,7 +96,7 @@
                                     "storageAccountId": "[if(variables('saEnabled'),resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')),json('null'))]",
                                     "workspaceId": "[if(variables('laEnabled'),parameters('workspaceId'),json('null'))]"
                                 },
-                                "type": "Microsoft.Network/applicationGateways/providers/diagnosticSettings"
+                                "type": "Microsoft.Network/trafficManagerProfiles/providers/diagnosticSettings"
                             }
                         ],
                         "variables": {

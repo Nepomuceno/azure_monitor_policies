@@ -38,5 +38,12 @@
             "description": ""
         },
         "defaultValue": ""
+    },
+    "resourceLocation": {
+        "type": "String",
+        "metadata": {
+          "description": "location to put this diagnostic",
+          "displayName": "location where this diagnostic is"
+        }
     }
   }

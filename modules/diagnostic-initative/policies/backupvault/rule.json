@@ -1,7 +1,15 @@
 {
     "if": {
-        "equals": "Microsoft.RecoveryServices/Vaults",
-        "field": "type"
+        "allOf": [
+            {
+                "equals": "[parameters('resourceLocation')]",
+                "field": "location"
+            },
+            {
+                "equals": "Microsoft.RecoveryServices/Vaults",
+                "field": "type"
+            }
+        ]
     },
     "then": {
         "details": {
@@ -131,17 +139,8 @@
                                             }
                                         }
                                     ],
-                                    "metrics": [
-                                        {
-                                            "category": "AllMetrics",
-                                            "enabled": true,
-                                            "retentionPolicy": {
-                                                "days": "[parameters('retentionDays')]",
-                                                "enabled": true
-                                            }
-                                        }
-                                    ],
-                                    "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+                                    "metrics": [],
+                                    "storageAccountId": "[if(variables('saEnabled'),resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')),json('null'))]",
                                     "workspaceId": "[if(variables('laEnabled'),parameters('workspaceId'),json('null'))]"
                                 },
                                 "type": "Microsoft.RecoveryServices/Vaults/providers/diagnosticSettings"
@@ -149,7 +148,8 @@
                         ],
                         "variables": {
                             "ehEnabled": "[greater(length(parameters('eventHubName')),0)]",
-                            "laEnabled": "[greater(length(parameters('workspaceId')),0)]"
+                            "laEnabled": "[greater(length(parameters('workspaceId')),0)]",
+                            "saEnabled": "[greater(length(parameters('storageAccountName')),0)]"
                         }
                     }
                 }
