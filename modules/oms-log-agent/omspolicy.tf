@@ -6,7 +6,7 @@ data "template_file" "template_deployment_linux" {
   template = "${file("${path.module}/templates/oms_linux_deployment.tpl")}"
 
   vars {
-    version = "1.9.1"
+    version = "1.9"
   }
 }
 

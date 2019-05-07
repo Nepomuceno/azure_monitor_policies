@@ -38,7 +38,6 @@ resource "azurerm_policy_assignment" "base" {
   parameters = "${data.template_file.parameters.*.rendered[count.index % length(var.locations)]}"
 }
 
-
 resource "azurerm_role_assignment" "assigment_rule_compatibility" {
   count                = "${length(local.available) * length(var.locations)}"
   scope                = "${var.scope}"
@@ -46,11 +45,9 @@ resource "azurerm_role_assignment" "assigment_rule_compatibility" {
   principal_id         = "${azurerm_policy_assignment.base.*.identity.0.principal_id[count.index]}"
 }
 
-
 output "roles" {
   value = "${azurerm_policy_assignment.base.*.identity}"
 }
-
 
 locals {
   available = ["eventhubs",

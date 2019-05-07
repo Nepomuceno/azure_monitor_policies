@@ -7,19 +7,17 @@
                   },
                   "location": {
                     "type": "string"
-                  },
-                  "workspaceId": {
-                    "type": "string"
-                  },
-                  "workspaceKey": {
-                    "type": "string"
                   }
                 },
                 "variables": {
-                  "vmExtensionName": "MMAExtension",
-                  "vmExtensionPublisher": "Microsoft.EnterpriseCloud.Monitoring",
-                  "vmExtensionType": "OmsAgentForLinux",
-                  "vmExtensionTypeHandlerVersion": "${version}"
+                  "vmExtensionName": "policyDeployedAgent",
+                  "vmExtensionPublisher": "Microsoft.Azure.Diagnostics",
+                  "vmExtensionType": "LinuxDiagnostic",
+                  "vmExtensionTypeHandlerVersion": "${version}",
+                  "pre-resource-id": "${preresource}",
+                  "post-resource-id": "${postresource}",
+                  "resource-id": "[resourceId('Microsoft.Compute/virtualMachines',parameters('vmName'))]",
+                  "settings": "[concat(variables('pre-resource-id'),variables('resource-id'),variables('post-resource-id'))]"
                 },
                 "resources": [
                   {
@@ -32,13 +30,8 @@
                       "type": "[variables('vmExtensionType')]",
                       "typeHandlerVersion": "[variables('vmExtensionTypeHandlerVersion')]",
                       "autoUpgradeMinorVersion": true,
-                      "settings": {
-                        "workspaceId": "[parameters('workspaceId')]",
-                        "stopOnMultipleConnections": "true"
-                      },
-                      "protectedSettings": {
-                        "workspaceKey": "[parameters('workspaceKey')]"
-                      }
+                      "settings": "[variables('settings')]",
+                      "protectedSettings": "${protected_settings}"
                     }
                   }
                 ],

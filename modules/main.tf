@@ -10,9 +10,15 @@ module "test_module" {
 }
 
 module "test_linux" {
-  source        = "./linux-oms-diagnostic-agent"
-  workspaceId   = "219d585f-0252-4fee-a140-8915825d6742"
-  workspaceKey  = "ERexNBFqKwOh+Uqh3GtXMy0OyMu5fwSOfAEINWLyoDTh0LrDrzQWwC8P4GEh+tH/ao0xjdW3efhiHWSxC5Pvtg=="
-  prefix        = "oms-deploy"
-  location      = "UK South"
+  source       = "./oms-log-agent"
+  workspaceId  = "219d585f-0252-4fee-a140-8915825d6742"
+  workspaceKey = "ERexNBFqKwOh+Uqh3GtXMy0OyMu5fwSOfAEINWLyoDTh0LrDrzQWwC8P4GEh+tH/ao0xjdW3efhiHWSxC5Pvtg=="
+  prefix       = "oms-deploy"
+  location     = "uksouth"
+}
+
+module "test_diagnostic" {
+  source   = "./la-diagnostic-agent"
+  prefix   = "la-deploy"
+  location = "uksouth"
 }

@@ -1,13 +1,15 @@
 data "azurerm_subscription" "current" {}
 
+/*
 resource "azurerm_policy_definition" "base" {
-  name         = "${var.prefix}-oms-log"
+  name         = "${var.prefix}-la-log"
   policy_type  = "Custom"
   mode         = "All"
-  display_name = "${var.prefix}-policy-oms"
+  display_name = "${var.prefix}-policy-la"
   policy_rule  = "${local.base_policy}"
   parameters   = "${local.parameters}"
 }
+
 
 resource "azurerm_policy_assignment" "force_diagnostic" {
   name                 = "${var.prefix}-oms-logs"
@@ -23,12 +25,6 @@ resource "azurerm_policy_assignment" "force_diagnostic" {
 
   parameters = <<PARAMETERS
 {
-  "workspaceId": {
-    "value": "${var.workspaceId}"
-  },
-  "workspaceKey": {
-    "value": "${var.workspaceKey}"
-  }
 }
 PARAMETERS
 }
@@ -38,23 +34,10 @@ resource "azurerm_role_assignment" "assigment_rule_compatibility" {
   role_definition_name = "Contributor"
   principal_id         = "${azurerm_policy_assignment.force_diagnostic.identity.0.principal_id}"
 }
-
-
+*/
 locals {
   parameters = <<POLICY_RULE_TEMPLATE
 {
-      "workspaceId": {
-        "type": "String",
-        "metadata": {
-          "displayName": "Log Analytics workspace"
-        }
-      },
-      "workspaceKey": {
-        "type": "String",
-        "metadata": {
-          "displayName": "Log Analytics workspace"
-        }
-      },
       "listOfImageIdToInclude": {
         "type": "Array",
         "metadata": {
