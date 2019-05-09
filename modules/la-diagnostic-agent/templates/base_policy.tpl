@@ -7,7 +7,7 @@
                     },
                     {
                         "anyOf": ${os_definition}
-                    }
+                    }   
                 ]
             },
             "then": {

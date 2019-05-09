@@ -3,6 +3,12 @@ variable "proxyPath" {
   default     = ""
 }
 
+variable "storage_name" {}
+
+variable "storage_sas_key" {}
+
+variable "eh_sas_url" {}
+
 variable "prefix" {}
 
 variable "location" {}

@@ -17,7 +17,9 @@
                   "pre-resource-id": "${preresource}",
                   "post-resource-id": "${postresource}",
                   "resource-id": "[resourceId('Microsoft.Compute/virtualMachines',parameters('vmName'))]",
-                  "settings": "[concat(variables('pre-resource-id'),variables('resource-id'),variables('post-resource-id'))]"
+                  "settings": "[concat(variables('pre-resource-id'),variables('resource-id'),variables('post-resource-id'))]",
+                  "parsed_settings": "[json(variables('settings'))]",
+                  "parsed_protected": "[json('${protected_settings}')]"
                 },
                 "resources": [
                   {
@@ -30,8 +32,8 @@
                       "type": "[variables('vmExtensionType')]",
                       "typeHandlerVersion": "[variables('vmExtensionTypeHandlerVersion')]",
                       "autoUpgradeMinorVersion": true,
-                      "settings": "[variables('settings')]",
-                      "protectedSettings": "${protected_settings}"
+                      "settings": "[variables('parsed_settings')]",
+                      "protectedSettings": "[variables('parsed_protected')]"
                     }
                   }
                 ],

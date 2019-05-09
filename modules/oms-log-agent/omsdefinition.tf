@@ -9,7 +9,6 @@ resource "azurerm_policy_definition" "base" {
   parameters   = "${local.parameters}"
 }
 
-
 resource "azurerm_policy_assignment" "force_diagnostic" {
   name                 = "${var.prefix}-oms-logs"
   scope                = "${data.azurerm_subscription.current.id}"
@@ -34,13 +33,11 @@ resource "azurerm_policy_assignment" "force_diagnostic" {
 PARAMETERS
 }
 
-
 resource "azurerm_role_assignment" "assigment_rule_compatibility" {
   scope                = "${data.azurerm_subscription.current.id}"
   role_definition_name = "Contributor"
   principal_id         = "${azurerm_policy_assignment.force_diagnostic.identity.0.principal_id}"
 }
-
 
 locals {
   parameters = <<POLICY_RULE_TEMPLATE

@@ -1,6 +1,5 @@
 data "azurerm_subscription" "current" {}
 
-/*
 resource "azurerm_policy_definition" "base" {
   name         = "${var.prefix}-la-log"
   policy_type  = "Custom"
@@ -10,7 +9,7 @@ resource "azurerm_policy_definition" "base" {
   parameters   = "${local.parameters}"
 }
 
-
+/*
 resource "azurerm_policy_assignment" "force_diagnostic" {
   name                 = "${var.prefix}-oms-logs"
   scope                = "${data.azurerm_subscription.current.id}"

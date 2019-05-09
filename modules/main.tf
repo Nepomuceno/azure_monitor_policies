@@ -18,7 +18,15 @@ module "test_linux" {
 }
 
 module "test_diagnostic" {
-  source   = "./la-diagnostic-agent"
-  prefix   = "la-deploy"
-  location = "uksouth"
+  source          = "./la-diagnostic-agent"
+  prefix          = "la-deploy"
+  location        = "uksouth"
+  storage_sas_key = ""
+  eh_sas_url      = ""
+  storage_name    = ""
+}
+
+module "monitor" {
+  source       = "./monitor"
+  oms_worspace = "bla"
 }

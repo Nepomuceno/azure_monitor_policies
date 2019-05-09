@@ -4,16 +4,27 @@ data "template_file" "is_linux" {
 
 data "template_file" "protected_settings" {
   template = "${file("${path.module}/templates/private_config.tpl")}"
+
+  vars {
+    storagename     = "${var.storage_name}"
+    storagesasToken = "${var.storage_sas_key}"
+    eh_sas_url      = "${var.eh_sas_url}"
+  }
 }
 
 data "template_file" "postresource" {
   template = "${file("${path.module}/templates/post_resource.tpl")}"
+
+  vars {
+    sinks = "logJsonBlob,eventHubsLogs"
+  }
 }
 
 data "template_file" "preresource" {
   template = "${file("${path.module}/templates/pre_resource.tpl")}"
+
   vars {
-    storagename     = ""
+    storagename = "${var.storage_name}"
   }
 }
 
@@ -21,7 +32,7 @@ data "template_file" "template_deployment_linux" {
   template = "${file("${path.module}/templates/la_linux_deployment.tpl")}"
 
   vars {
-    version            = "3.*"
+    version            = "3.0"
     preresource        = "${data.template_file.preresource.rendered}"
     postresource       = "${data.template_file.postresource.rendered}"
     protected_settings = "${data.template_file.protected_settings.rendered}"
