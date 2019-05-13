@@ -21,9 +21,9 @@ module "test_diagnostic" {
   source          = "./la-diagnostic-agent"
   prefix          = "la-deploy"
   location        = "uksouth"
-  storage_sas_key = ""
-  eh_sas_url      = ""
-  storage_name    = ""
+  storage_sas_key = "7523wzlce7IuTU3e/TocIIeDLPoiphhSbpQdX/ZkzQ8%3D"
+  eh_sas_url      = "https://test-auto-prov.servicebus.windows.net/sample?sr=https%3A%2F%2Ftest-auto-prov.servicebus.windows.net%2Fsample&sig=VT6bLGi0c1eMPgD52JnXAoyMhMLp3a2y7LkcXR2m/E4%3D&se=1617752016&skn=sender"
+  storage_name    = "samplepolicy"
 }
 
 module "monitor" {
