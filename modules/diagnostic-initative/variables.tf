@@ -1,41 +1,27 @@
-variable "generate_la_worspace" {
-  description = "if should be generated a log workspace for the logs"
-  default     = true
-}
-
-variable "generate_eh" {
-  description = "if should be generated a eventhubs for the logs"
-  default     = true
+variable "eh_namespace" {
+  description = "eventhubs namespace to be used"
 }
 
 variable "eh_name" {
-  description = "Pre geneerated event hubs name to be used"
-  default     = ""
+  description = "name of the event hubs to be used"
 }
 
-variable "eh_role_id" {
-  description = "Pre generated event hubs role id to be used"
-  default     = ""
+variable "storage_name" {
+  description = "name of the storage account to push the data to"
 }
 
-variable "storage_id" {
-  description = "Pre generated event hubs role id to be used"
-  default     = ""
+variable "location" {
+  description = "Location where to apply the policy"
 }
 
-variable "locations" {
-  type        = "list"
-  description = "Location where the results should be put"
-}
-
-variable "scope" {
-  description = "scope to which this rules should be applied"
+variable "prefix" {
+  description = "Prefix to add to the resources"
 }
 
 variable "rg_name" {
   description = "name of the resource group where the logs should becreated"
 }
 
-variable "prefix" {
-  description = "prefix of the resources that will be created  in this repo"
+variable "scope" {
+  description = "scope where you want to apply this restrictions to"
 }
