@@ -24,6 +24,7 @@ resource "azurerm_policy_assignment" "force_diagnostic" {
 
   parameters = <<PARAMETERS
 {
+  
 }
 PARAMETERS
 }
